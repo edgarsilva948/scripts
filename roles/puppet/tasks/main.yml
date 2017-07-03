@@ -1,0 +1,17 @@
+---
+# tasks file for puppet
+- name: Download do repositorio
+  get_url:
+    url: https://apt.puppetlabs.com/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb
+    dest: /tmp/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb
+
+- name: Instalando o pacote .DEB
+  command: dpkg -i /tmp/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb
+
+- name: Instalacao do puppet e dependencias
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - ntp
+    - puppet-lint
+    - puppet
+    - puppet-common

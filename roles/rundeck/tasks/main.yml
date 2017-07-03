@@ -1,0 +1,10 @@
+---
+# tasks file for rundeck
+- name: Garantir o java
+  yum: name=java
+
+- name: Download do repositorio
+  command: rpm -Uvh http://repo.rundeck.org/latest.rpm
+
+- name: Instalando o rundeck
+  yum: name=rundeck state=present
