@@ -1,0 +1,11 @@
+wordpress:
+  image: wordpress
+  links:
+    - mysql:mysql
+  ports:
+    - 8080:80
+
+mysql:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: "dexter"
