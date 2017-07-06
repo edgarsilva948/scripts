@@ -1,0 +1,6 @@
+---
+- name: Executando roles na maquina devops
+  hosts: devops
+  roles:
+#    - puppet
+    - gitlab

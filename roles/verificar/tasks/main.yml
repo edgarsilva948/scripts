@@ -1,0 +1,26 @@
+---
+# tasks file for verificar
+- name: Validando o Vhost
+  command: test -f /etc/nginx/sites-enabled/green.conf
+  register: vhost
+  ignore_errors: yes
+
+- name: Removendo o container Green
+  command: rm -f /etc/nginx/sites-enabled/green.conf
+  when: vhost.rc == 0
+
+- name: Deploy do container blue
+  copy:
+    src: /etc/ansible/roles/verificar/files/blue.conf
+    dest: /etc/nginx/sites-enabled/blue.conf
+  when: vhost.rc == 0
+
+- name: Removendo o container Blue
+  command: rm -f /etc/nginx/sites-enabled/blue.conf
+  when: vhost.rc == 1
+  
+- name: Deploy do container Green
+  copy:
+    src: /etc/ansible/roles/verificar/files/green.conf
+    dest: /etc/nginx/sites-enabled/green.conf
+  when: vhost.rc == 1

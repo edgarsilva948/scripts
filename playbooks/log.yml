@@ -1,0 +1,5 @@
+---
+- name: Executando a role Log
+  hosts: docker
+  roles:
+    - log
