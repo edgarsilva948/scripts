@@ -7,8 +7,8 @@
  
 - name: Gerando log caso seja Blue
   shell: echo "blue" > /tmp/log
-  when: vhost.rc == 1
+  when: vhost.rc == 0
 
 - name: Gerando log caso seja Green
   shell: echo "green" > /tmp/log
-  when: vhost.rc == 0
+  when: vhost.rc == 1
