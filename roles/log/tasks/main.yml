@@ -5,10 +5,10 @@
   register: vhost
   ignore_errors: yes
  
-- name: Gernado log caso seja Blue
+- name: Gerando log caso seja Blue
   shell: echo "blue" > /tmp/log
   when: vhost.rc == 1
 
-- name: Gernado log caso seja Green
+- name: Gerando log caso seja Green
   shell: echo "green" > /tmp/log
   when: vhost.rc == 0
